@@ -15,7 +15,7 @@
                 foreach (var team in JsonConvert.DeserializeObject<List<SimpleTeam>>(web.DownloadString("https://api.pustalorc.xyz/NuelTeams")))
                 {
                     <li class="list-group-item">
-                        Team: <a href="https://thenuel.com/team/@team.Id?gameContext=5734">@team.Name</a>
+                        Team: <a href="https://thenuel.com/team/@team.Id?gameContext=5734">@team.Name</a> - Total MMR: @team.TotalMMR - Average MMR: @team.AverageMMR
                         <ul class="list-group-horizontal">
                             @{
                                 foreach (var player in team.Members)

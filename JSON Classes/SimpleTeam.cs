@@ -6,6 +6,9 @@ namespace nuelranks.pustalorc.xyz.JSON_Classes
     {
         public string Id { get; set; } = "";
         public string Name { get; set; } = "";
+        public int TotalMMR { get; set; } = 0;
+
+        public int AverageMMR { get; set; } = 0;
         public List<SimplePlayer> Members { get; set; } = new List<SimplePlayer>();
     }
 }
