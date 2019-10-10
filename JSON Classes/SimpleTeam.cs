@@ -2,11 +2,10 @@
 
 namespace nuelranks.pustalorc.xyz.JSON_Classes
 {
-    public class SimplePlayer
+    public class SimpleTeam
     {
+        public string Id { get; set; } = "";
         public string Name { get; set; } = "";
-        public string ProfilePicture { get; set; } = "";
-        public string Rank { get; set; } = "";
-        public int MMR { get; set; } = 0;
+        public List<SimplePlayer> Members { get; set; } = new List<SimplePlayer>();
     }
 }
