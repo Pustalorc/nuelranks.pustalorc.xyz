@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">The Nuel Rainbow 6 Siege Ranks</h1>
+    <p>If nothing shows up, the website is probably trying to retrieve the data. Please give it a couple seconds and refresh.</p>
+    <br/>
+    <ul class="list-group">
+        @{
+            foreach (var team in @Program.SimpleTeams)
+            {
+                <li class="list-group-item">
+                    Team: @team.Name
+                    <ul class="list-group-horizontal">
+                        @{
+                            foreach (var player in team.Members)
+                            {
+                                if (string.IsNullOrEmpty(player.ProfilePicture))
+                                {
+                                    <li class="list-group-item-warning">@player.Name - Account doesn't exist, please verify your name.</li>
+                                }
+                                else
+                                {
+                                    <li class="list-group-item">
+                                        <img class="player-image" src="@player.ProfilePicture" alt="@player.ProfilePicture"/>
+                                        <p>UPlay Name: @player.Name</p>
+                                        <p>Current MMR: @player.MMR</p>
+                                        <p>Current Rank: <img class="player-rank" src="@player.Rank" alt="@player.Rank"/></p>
+                                    </li>
+                                }
+                            }
+                        }
+                    </ul>
+                </li>
+            }
+        }
+    </ul>
+    <br/>
+    <button class="btn-danger" asp-controller="Home" asp-action="Refresh">Refresh data (Limited to every day)</button>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</div>
