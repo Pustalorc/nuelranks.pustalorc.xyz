@@ -1,4 +1,4 @@
-﻿namespace nuelranks.pustalorc.xyz.Models
+namespace nuelranks.pustalorc.xyz.Models
 {
     public class ErrorViewModel
     {

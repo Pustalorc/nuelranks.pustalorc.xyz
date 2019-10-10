@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\OneDrive\\Personal\\OneDrive\\Projects\\pustalorc.xyz\\nuelranks.pustalorc.xyz\\nuelranks.pustalorc.xyz.csproj": {}
+    "D:\\OneDrive\\Personal\\OneDrive\\Projects\\nuelranks.pustalorc.xyz\\nuelranks.pustalorc.xyz.csproj": {}
   },
   "projects": {
-    "D:\\OneDrive\\Personal\\OneDrive\\Projects\\pustalorc.xyz\\nuelranks.pustalorc.xyz\\nuelranks.pustalorc.xyz.csproj": {
+    "D:\\OneDrive\\Personal\\OneDrive\\Projects\\nuelranks.pustalorc.xyz\\nuelranks.pustalorc.xyz.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\OneDrive\\Personal\\OneDrive\\Projects\\pustalorc.xyz\\nuelranks.pustalorc.xyz\\nuelranks.pustalorc.xyz.csproj",
+        "projectUniqueName": "D:\\OneDrive\\Personal\\OneDrive\\Projects\\nuelranks.pustalorc.xyz\\nuelranks.pustalorc.xyz.csproj",
         "projectName": "nuelranks.pustalorc.xyz",
-        "projectPath": "D:\\OneDrive\\Personal\\OneDrive\\Projects\\pustalorc.xyz\\nuelranks.pustalorc.xyz\\nuelranks.pustalorc.xyz.csproj",
+        "projectPath": "D:\\OneDrive\\Personal\\OneDrive\\Projects\\nuelranks.pustalorc.xyz\\nuelranks.pustalorc.xyz.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\OneDrive\\Personal\\OneDrive\\Projects\\pustalorc.xyz\\nuelranks.pustalorc.xyz\\obj\\",
+        "outputPath": "D:\\OneDrive\\Personal\\OneDrive\\Projects\\nuelranks.pustalorc.xyz\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,26 +43,10 @@
               "version": "[4.1.0, )"
             },
             "Fody": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[3.0.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[3.0.0, )"
-            },
-            "Microsoft.Extensions.Logging.Debug": {
-              "target": "Package",
-              "version": "[3.0.0, )"
-            },
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
-              "target": "Package",
-              "version": "[3.0.0, )"
+              "version": "[6.0.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -78,16 +62,7 @@
             "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "warn": true
         }
       }
     }

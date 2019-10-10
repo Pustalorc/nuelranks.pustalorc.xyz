@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using nuelranks.pustalorc.xyz.Models;
@@ -18,13 +17,6 @@ namespace nuelranks.pustalorc.xyz.Controllers
         public IActionResult Index()
         {
             return View();
-        }
-
-        private DateTime _lastRefresh = DateTime.Now;
-
-        public void Refresh()
-        {
-            if (DateTime.Now.Subtract(_lastRefresh).TotalDays > 1) Program.RefreshTeams();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

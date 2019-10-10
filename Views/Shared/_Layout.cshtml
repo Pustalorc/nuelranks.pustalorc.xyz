@@ -6,12 +6,13 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css"/>
+    <link rel="shortcut icon" type="image/png" href="https://img.icons8.com/material/24/000000/chevron-hashtag.png"/>
 </head>
 <body>
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container">
-            <a class="navbar-brand" asp-area="" asp-page="/Index">The Nuel Ranks</a>
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">The Nuel Ranks</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -19,7 +20,7 @@
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                 </ul>
             </div>
@@ -34,15 +35,12 @@
 
 <footer class="border-top footer text-muted">
     <div class="container">
-        <p>&copy; 2019 - Vicente "Pustalorc" Pastor</p>
-        <p>Created with ASP.NET and using API from <a href="https://thenuel.com/">NUEL</a> created by Tom and Ranks API from <a href="https://r6tab.com">r6tab.com</a></p>
+        &copy; 2019 - Vicente "Pustalorc" Pastor - Created with ASP.NET and using API from <a href="https://thenuel.com/">NUEL</a> created by Tom and Ranks API from <a href="https://r6tab.com">r6tab.com</a> - <a href="https://icons8.com/icon/30817/chevron-hashtag">Chevron Hashtag icon by Icons8</a>
     </div>
 </footer>
-
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
-
 @RenderSection("Scripts", false)
 </body>
 </html>
