@@ -2,7 +2,7 @@
 @using Newtonsoft.Json
 @using nuelranks.pustalorc.xyz.JSON_Classes
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "The Nuel Rainbow 6 Siege Ranks";
 }
 
 <div class="text-center">
@@ -12,30 +12,10 @@
         @{
             using (var web = new WebClient())
             {
-                foreach (var team in JsonConvert.DeserializeObject<List<SimpleTeam>>(web.DownloadString("https://api.pustalorc.xyz/NuelTeams")))
+                foreach (var team in JsonConvert.DeserializeObject<List<SimpleTeam>>(web.DownloadString("https://api.pustalorc.xyz/NuelTeams/RainbowSix")))
                 {
                     <li class="list-group-item">
-                        Team: <a href="https://thenuel.com/team/@team.Id?gameContext=5734">@team.Name</a> - Total MMR: @team.TotalMMR - Average MMR: @team.AverageMMR
-                        <ul class="list-group-horizontal">
-                            @{
-                                foreach (var player in team.Members)
-                                {
-                                    if (string.IsNullOrEmpty(player.ProfilePicture))
-                                    {
-                                        <li class="list-group-item-warning">@player.Name - Account doesn't exist, please verify your name.</li>
-                                    }
-                                    else
-                                    {
-                                        <li class="list-group-item">
-                                            <a href="https://r6.tracker.network/profile/pc/@player.Name"><img class="player-image" src="@player.ProfilePicture" alt="@player.ProfilePicture" /></a>
-                                            <p>UPlay Name: @player.Name</p>
-                                            <p>Current MMR: @player.MMR</p>
-                                            <p>Current Rank: <img class="player-rank" src="@player.Rank" alt="@player.Rank" /></p>
-                                        </li>
-                                    }
-                                }
-                            }
-                        </ul>
+                        Team: <a href="https://thenuel.com/team/@team.Id?gameContext=5734">@team.Name</a> - Average MMR: @team.AverageMMR - <a href="/@team.Id">More Details</a>
                     </li>
                 }
             }

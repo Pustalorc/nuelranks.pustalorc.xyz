@@ -19,6 +19,13 @@ namespace nuelranks.pustalorc.xyz.Controllers
             return View();
         }
 
+        [HttpGet("{team}")]
+        public IActionResult Team(string team)
+        {
+            ViewBag.Message = team;
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

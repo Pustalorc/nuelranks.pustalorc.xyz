@@ -2,9 +2,9 @@
 {
     public class SimplePlayer
     {
+        public string PlayerID { get; set; } = "";
         public string Name { get; set; } = "";
-        public string ProfilePicture { get; set; } = "";
-        public string Rank { get; set; } = "";
+        public int Rank { get; set; } = 0;
         public int MMR { get; set; } = 0;
     }
 }

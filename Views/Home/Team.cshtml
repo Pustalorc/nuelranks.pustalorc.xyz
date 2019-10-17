@@ -1,0 +1,42 @@
+﻿@using System.Net
+@using Newtonsoft.Json
+@using nuelranks.pustalorc.xyz.JSON_Classes
+@{
+    using (var web = new WebClient())
+    {
+        ViewBag.TeamData = JsonConvert.DeserializeObject<SimpleTeam>(web.DownloadString($"https://api.pustalorc.xyz/NuelTeams/RainbowSix/{ViewBag.Message}"));
+        ViewData["Title"] = $"Nuel R6S - {ViewBag.TeamData.Name}";
+    }
+}
+
+<div class="text-center">
+    <h1 class="display-4">The Nuel Rainbow 6 Siege Ranks</h1>
+    <br/>
+    @{
+        <h2>Team: @ViewBag.TeamData.Name - Average MMR: @ViewBag.TeamData.AverageMMR</h2>
+        <ul class="list-group-horizontal">
+            @{
+                foreach (var player in ViewBag.TeamData.Members)
+                {
+                    if (string.IsNullOrEmpty(player.PlayerID))
+                    {
+                        <li class="list-group-item-warning">@player.Name - Account doesn't exist, please verify your name.</li>
+                    }
+                    else
+                    {
+                        var RankURL = $"https://trackercdn.com/cdn/r6.tracker.network/ranks/svg/hd-rank{player.Rank}.svg";
+
+                        <li class="list-group-item">
+                            <a href="https://r6.tracker.network/profile/pc/@player.Name">
+                                <img class="player-image" src="https://ubisoft-avatars.akamaized.net/@player.PlayerID/default_146_146.png" alt="https://ubisoft-avatars.akamaized.net/@player.PlayerID/default_146_146.png"/>
+                            </a>
+                            <p>UPlay Name: @player.Name</p>
+                            <p>Current MMR: @player.MMR</p>
+                            <p>Current Rank: <img class="player-rank" src="@RankURL" alt="@player.Rank"/></p>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    }
+</div>
