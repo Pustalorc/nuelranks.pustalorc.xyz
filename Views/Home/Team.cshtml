@@ -13,30 +13,43 @@
     <h1 class="display-4">The Nuel Rainbow 6 Siege Ranks</h1>
     <br/>
     @{
-        <h2>Team: @ViewBag.TeamData.Name - Average MMR: @ViewBag.TeamData.AverageMMR</h2>
-        <ul class="list-group-horizontal">
-            @{
-                foreach (var player in ViewBag.TeamData.Members)
-                {
-                    if (string.IsNullOrEmpty(player.PlayerID))
-                    {
-                        <li class="list-group-item-warning">@player.Name - Account doesn't exist, please verify your name.</li>
-                    }
-                    else
-                    {
-                        var RankURL = $"https://trackercdn.com/cdn/r6.tracker.network/ranks/svg/hd-rank{player.Rank}.svg";
+        SimpleTeam team = ViewBag.TeamData;
 
-                        <li class="list-group-item">
-                            <a href="https://r6.tracker.network/profile/pc/@player.Name">
-                                <img class="player-image" src="https://ubisoft-avatars.akamaized.net/@player.PlayerID/default_146_146.png" alt="https://ubisoft-avatars.akamaized.net/@player.PlayerID/default_146_146.png"/>
-                            </a>
-                            <p>UPlay Name: @player.Name</p>
-                            <p>Current MMR: @player.MMR</p>
-                            <p>Current Rank: <img class="player-rank" src="@RankURL" alt="@player.Rank"/></p>
-                        </li>
+        <h2>Team: <a href="https://thenuel.com/team/@ViewBag.TeamData.Id?gameContext=5734">@team.Name</a> - Average MMR: @team.AverageMMR</h2>
+        for (var i = 0; i <= team.Members.Count / 6; i++)
+        {
+            <ul class="list-group list-group-horizontal">
+            @{ 
+                for (var o = 0; o < 6; o++)
+                {
+                    var index = o + (i * 6);
+                    if (index < team.Members.Count)
+                    {
+                        var player = team.Members[index];
+                        if (string.IsNullOrEmpty(player.PlayerID))
+                        {
+                            <li class="list-group-item list-group-item-warning">
+                                <p>@player.Name</p>
+                                <p>Account doesn't exist, please verify your name.</p>
+                            </li>
+                        }
+                        else
+                        {
+                            var RankURL = $"https://trackercdn.com/cdn/r6.tracker.network/ranks/svg/hd-rank{player.Rank}.svg";
+
+                            <li class="list-group-item">
+                                <a href="https://r6.tracker.network/profile/pc/@player.Name">
+                                    <img src="https://ubisoft-avatars.akamaized.net/@player.PlayerID/default_146_146.png" alt="https://ubisoft-avatars.akamaized.net/@player.PlayerID/default_146_146.png" />
+                                </a>
+                                <p>@player.Name</p>
+                                <img class="player-rank" src="@RankURL" alt="@player.Rank" />
+                                <p>MMR: @player.MMR</p>
+                            </li>
+                        }
                     }
                 }
             }
-        </ul>
+            </ul>
+        }
     }
 </div>

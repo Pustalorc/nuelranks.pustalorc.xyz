@@ -7,19 +7,41 @@
 
 <div class="text-center">
     <h1 class="display-4">The Nuel Rainbow 6 Siege Ranks</h1>
-    <br/>
-    <ul class="list-group">
-        @{
-            using (var web = new WebClient())
+    <br />
+    @{
+        using (var web = new WebClient())
+        {
+            var teams = JsonConvert.DeserializeObject<List<SimpleTeam>>(web.DownloadString("https://api.pustalorc.xyz/NuelTeams/RainbowSix"));
+
+            for (var i = 0; i <= teams.Count / 6; i++)
             {
-                foreach (var team in JsonConvert.DeserializeObject<List<SimpleTeam>>(web.DownloadString("https://api.pustalorc.xyz/NuelTeams/RainbowSix")))
-                {
-                    <li class="list-group-item">
-                        Team: <a href="https://thenuel.com/team/@team.Id?gameContext=5734">@team.Name</a> - Average MMR: @team.AverageMMR - <a href="/@team.Id">More Details</a>
-                    </li>
+                <ul class="list-group list-group-horizontal">
+                @{ 
+                    for (var o = 0; o < 6; o++)
+                    {
+                        var index = o + (i * 6);
+                        if (index < teams.Count)
+                        {
+                            <li class="list-group-item">
+                            @{
+                                var team = teams[index];
+                                var captain = team?.Members?.FirstOrDefault(k => k.IsCaptain)?.PlayerID ?? "";
+                                var image = $"https://ubisoft-avatars.akamaized.net/{team.Members.Find(k => k.IsCaptain).PlayerID}/default_146_146.png";
+                                if (string.IsNullOrEmpty(captain))
+                                {
+                                    image = "https://ubisoft-avatars.akamaized.net/73fb3e4e-bb01-4c51-8160-73c6a421c51f/default_146_146.png";
+                                }
+
+                                <a href="/@team.Id"><img src="@image" alt="@team.Name" /></a>
+                                <p>@team.Name</p>
+                                <p>Team MMR: @team.AverageMMR</p>
+                            }
+                            </li>
+                        }
+                    }
                 }
+                </ul>
             }
         }
-    </ul>
-    <br/>
+    }
 </div>
