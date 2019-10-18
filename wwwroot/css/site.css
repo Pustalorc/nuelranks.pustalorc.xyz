@@ -8,13 +8,23 @@ a.navbar-brand {
 }
 
 .player-image {
-    height: 50px;
-    width: 50px;
+    height: 156px;
+    width: 156px;
 }
 
 .player-rank {
     height: 35px;
     width: 35px;
+}
+
+.background {
+    background-position: center center;
+    background-size: cover;
+}
+
+.tournament-image {
+    height: 500px;
+    width: 500px;
 }
 
 /* Provide sufficient contrast against white background */

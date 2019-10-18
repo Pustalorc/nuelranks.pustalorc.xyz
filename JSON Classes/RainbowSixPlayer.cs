@@ -1,6 +1,6 @@
 ﻿namespace nuelranks.pustalorc.xyz.JSON_Classes
 {
-    public class SimplePlayer
+    public class RainbowSixPlayer
     {
         public string PlayerID { get; set; } = "";
         public string Name { get; set; } = "";

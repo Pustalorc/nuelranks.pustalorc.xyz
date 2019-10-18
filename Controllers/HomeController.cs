@@ -19,8 +19,27 @@ namespace nuelranks.pustalorc.xyz.Controllers
             return View();
         }
 
-        [HttpGet("{team}")]
-        public IActionResult Team(string team)
+        [Route("LoL/")]
+        public IActionResult LeagueOfLegends()
+        {
+            return View();
+        }
+
+        [HttpGet("LoL/{team}")]
+        public IActionResult LeagueOfLegendsTeam(string team)
+        {
+            ViewBag.Message = team;
+            return View();
+        }
+
+        [Route("R6/")]
+        public IActionResult RainbowSix()
+        {
+            return View();
+        }
+
+        [HttpGet("R6/{team}")]
+        public IActionResult RainbowSixTeam(string team)
         {
             ViewBag.Message = team;
             return View();

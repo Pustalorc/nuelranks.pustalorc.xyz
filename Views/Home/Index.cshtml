@@ -1,47 +1,24 @@
-﻿@using System.Net
-@using Newtonsoft.Json
-@using nuelranks.pustalorc.xyz.JSON_Classes
-@{
-    ViewData["Title"] = "The Nuel Rainbow 6 Siege Ranks";
+﻿@{
+    ViewData["Title"] = "The Nuel Tournament Ranks";
 }
 
 <div class="text-center">
-    <h1 class="display-4">The Nuel Rainbow 6 Siege Ranks</h1>
-    <br />
-    @{
-        using (var web = new WebClient())
-        {
-            var teams = JsonConvert.DeserializeObject<List<SimpleTeam>>(web.DownloadString("https://api.pustalorc.xyz/NuelTeams/RainbowSix"));
-
-            for (var i = 0; i <= teams.Count / 6; i++)
-            {
-                <ul class="list-group list-group-horizontal">
-                @{ 
-                    for (var o = 0; o < 6; o++)
-                    {
-                        var index = o + (i * 6);
-                        if (index < teams.Count)
-                        {
-                            <li class="list-group-item">
-                            @{
-                                var team = teams[index];
-                                var captain = team?.Members?.FirstOrDefault(k => k.IsCaptain)?.PlayerID ?? "";
-                                var image = $"https://ubisoft-avatars.akamaized.net/{team.Members.Find(k => k.IsCaptain).PlayerID}/default_146_146.png";
-                                if (string.IsNullOrEmpty(captain))
-                                {
-                                    image = "https://ubisoft-avatars.akamaized.net/73fb3e4e-bb01-4c51-8160-73c6a421c51f/default_146_146.png";
-                                }
-
-                                <a href="/@team.Id"><img src="@image" alt="@team.Name" /></a>
-                                <p>@team.Name</p>
-                                <p>Team MMR: @team.AverageMMR</p>
-                            }
-                            </li>
-                        }
-                    }
-                }
-                </ul>
-            }
-        }
-    }
+    <h1 class="display-4"><a href="https://thenuel.com/">The Nuel</a> Tournament Ranks</h1>
+    <br/>
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">
+            <div style="background-image: url(http://images.ctfassets.net/4omerct2czpp/6VvwaItoq8eG0W401Oi1Xb/401e71f1e40b7575abc17be4b00677cf/league_bg.png)" class="background">
+                <a href="/LoL">
+                    <img class="tournament-image" src="https://images.ctfassets.net/4omerct2czpp/4033dcsLqHaa4z2k6YRmkV/83070b991ccb1dba8a50631d7483e2cb/LEAGUE_LOGO2.png"/>
+                </a>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div style="background-image: url(http://images.ctfassets.net/4omerct2czpp/4uyOfEl2yPVT9kaqZUFp8X/ca942618ba1319b1392da6da72d59c7e/R6_bg2.png)" class="background">
+                <a href="/R6">
+                    <img class="tournament-image" src="https://images.ctfassets.net/4omerct2czpp/AO5w97ZbdtxsBjaSvcNSm/01d0824bbfd382bac58612bee5656553/R6_logo.png"/>
+                </a>
+            </div>
+        </li>
+    </ul>
 </div>

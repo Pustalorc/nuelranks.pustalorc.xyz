@@ -1,0 +1,55 @@
+﻿@using System.Net
+@using Newtonsoft.Json
+@using nuelranks.pustalorc.xyz.JSON_Classes
+@{
+    using (var web = new WebClient())
+    {
+        ViewBag.TeamData = JsonConvert.DeserializeObject<LeagueOfLegendsTeam>(web.DownloadString($"http://localhost:50052/NuelTeams/LeagueOfLegends/{ViewBag.Message}"));
+        ViewData["Title"] = $"Nuel LoL - {ViewBag.TeamData.Name}";
+    }
+}
+
+<div class="text-center">
+    <h1 class="display-4"><a href="https://tournaments.thenuel.com/tournaments/league-of-legends-university-series-winter-2019">The Nuel League Of Legends</a> Ranks</h1>
+    <br/>
+    @{
+        LeagueOfLegendsTeam team = ViewBag.TeamData;
+
+        <h2>Team: <a href="https://thenuel.com/team/@ViewBag.TeamData.Id?gameContext=1">@team.Name</a></h2>
+        for (var i = 0; i <= team.Members.Count / 6; i++)
+        {
+            <ul class="list-group list-group-horizontal">
+                @{
+                    for (var o = 0; o < 6; o++)
+                    {
+                        var index = o + i * 6;
+                        if (index < team.Members.Count)
+                        {
+                            var player = team.Members[index];
+                            if (string.IsNullOrEmpty(player.PlayerID))
+                            {
+                                <li class="list-group-item list-group-item-warning">
+                                    <p>@player.Name</p>
+                                    <p>Account doesn't exist, please verify your name.</p>
+                                </li>
+                            }
+                            else
+                            {
+                                var RankURL = $"https://opgg-static.akamaized.net/images/medals/{player.Rank.ToLower()}.png";
+                                var ProfilePic = $"http://ddragon.leagueoflegends.com/cdn/9.20.1/img/profileicon/{player.ProfileIconId}.png";
+
+                                <li class="list-group-item">
+                                    <a href="https://euw.op.gg/summoner/userName=@player.Name">
+                                        <img class="player-image" src="@ProfilePic" alt="@ProfilePic"/>
+                                    </a>
+                                    <p>@player.Name</p>
+                                    <img class="player-rank" src="@RankURL" alt="@player.Rank"/>
+                                </li>
+                            }
+                        }
+                    }
+                }
+            </ul>
+        }
+    }
+</div>
