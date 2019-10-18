@@ -11,7 +11,7 @@
     @{
         using (var web = new WebClient())
         {
-            var teams = JsonConvert.DeserializeObject<List<LeagueOfLegendsTeam>>(web.DownloadString("http://localhost:50052/NuelTeams/LeagueOfLegends"));
+            var teams = JsonConvert.DeserializeObject<List<LeagueOfLegendsTeam>>(web.DownloadString("https://api.pustalorc.xyz/NuelTeams/LeagueOfLegends"));
 
             for (var i = 0; i <= teams.Count / 6; i++)
             {
