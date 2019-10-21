@@ -2,7 +2,7 @@
 {
     public class LeagueOfLegendsPlayer
     {
-        public string PlayerID { get; set; } = "";
+        public string PlayerId { get; set; } = "";
         public string Name { get; set; } = "";
         public string TftRank { get; set; } = "default";
         public string Rank { get; set; } = "default";
