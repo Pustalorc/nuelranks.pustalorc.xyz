@@ -29,11 +29,13 @@
                                                 var team = teams[index];
                                                 var captain = team?.Members?.FirstOrDefault(k => k.IsCaptain)?.ProfileIconId ?? 0;
                                                 var image = $"http://ddragon.leagueoflegends.com/cdn/9.20.1/img/profileicon/{captain}.png";
+                                                var RankURL = $"https://opgg-static.akamaized.net/images/medals/{team.AverageRank.ToLower()}.png";
 
                                                 <a href="/LoL/@team.Id">
                                                     <img class="player-image" src="@image" alt="@team.Name"/>
                                                 </a>
                                                 <p>@team.Name</p>
+                                                <p>Team Rank: <img class="player-rank" src="@RankURL" alt="@team.AverageRank" /></p>
                                             }
                                         </li>
                                     }
