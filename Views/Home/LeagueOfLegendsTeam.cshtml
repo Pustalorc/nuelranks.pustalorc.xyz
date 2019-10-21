@@ -11,45 +11,50 @@
 
 <div class="text-center">
     <h1 class="display-4"><a href="https://tournaments.thenuel.com/tournaments/league-of-legends-university-series-winter-2019">The Nuel League Of Legends</a> Ranks</h1>
-    <br/>
+    <br />
     @{
         LeagueOfLegendsTeam team = ViewBag.TeamData;
 
         <h2>Team: <a href="https://thenuel.com/team/@ViewBag.TeamData.Id?gameContext=1">@team.Name</a></h2>
+        <br />
         for (var i = 0; i <= team.Members.Count / 6; i++)
         {
-            <ul class="list-group list-group-horizontal">
-                @{
-                    for (var o = 0; o < 6; o++)
-                    {
-                        var index = o + i * 6;
-                        if (index < team.Members.Count)
-                        {
-                            var player = team.Members[index];
-                            if (string.IsNullOrEmpty(player.PlayerID))
+            <div class="row">
+                <div class="col-auto mx-auto">
+                    <ul class="list-group list-group-horizontal">
+                        @{
+                            for (var o = 0; o < 6; o++)
                             {
-                                <li class="list-group-item list-group-item-warning">
-                                    <p>@player.Name</p>
-                                    <p>Account doesn't exist, please verify your name.</p>
-                                </li>
-                            }
-                            else
-                            {
-                                var RankURL = $"https://opgg-static.akamaized.net/images/medals/{player.Rank.ToLower()}.png";
-                                var ProfilePic = $"http://ddragon.leagueoflegends.com/cdn/9.20.1/img/profileicon/{player.ProfileIconId}.png";
+                                var index = o + i * 6;
+                                if (index < team.Members.Count)
+                                {
+                                    var player = team.Members[index];
+                                    if (string.IsNullOrEmpty(player.PlayerID))
+                                    {
+                                        <li class="list-group-item list-group-item-warning border-0">
+                                            <p>@player.Name</p>
+                                            <p>Account doesn't exist, please verify your name.</p>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        var RankURL = $"https://opgg-static.akamaized.net/images/medals/{player.Rank.ToLower()}.png";
+                                        var ProfilePic = $"http://ddragon.leagueoflegends.com/cdn/9.20.1/img/profileicon/{player.ProfileIconId}.png";
 
-                                <li class="list-group-item">
-                                    <a href="https://euw.op.gg/summoner/userName=@player.Name">
-                                        <img class="player-image" src="@ProfilePic" alt="@ProfilePic"/>
-                                    </a>
-                                    <p>@player.Name</p>
-                                    <img class="player-rank" src="@RankURL" alt="@player.Rank"/>
-                                </li>
+                                        <li class="list-group-item border-0">
+                                            <a href="https://euw.op.gg/summoner/userName=@player.Name">
+                                                <img class="player-image" src="@ProfilePic" alt="@ProfilePic" />
+                                            </a>
+                                            <p>@player.Name</p>
+                                            <img class="player-rank" src="@RankURL" alt="@player.Rank" />
+                                        </li>
+                                    }
+                                }
                             }
                         }
-                    }
-                }
-            </ul>
+                    </ul>
+                </div>
+            </div>
         }
     }
 </div>
