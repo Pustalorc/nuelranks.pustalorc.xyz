@@ -19,12 +19,6 @@ a.navbar-brand {
 
 .background {
     background-position: center center;
-    background-size: cover;
-}
-
-.tournament-image {
-    height: 500px;
-    width: 500px;
 }
 
 /* Provide sufficient contrast against white background */
@@ -36,6 +30,10 @@ a {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+.border-darker {
+    border-color: #141a20 !important;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {

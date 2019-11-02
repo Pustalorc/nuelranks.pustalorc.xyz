@@ -12,39 +12,28 @@
         using (var web = new WebClient())
         {
             var teams = JsonConvert.DeserializeObject<List<LeagueOfLegendsTeam>>(web.DownloadString("https://api.pustalorc.xyz/NuelTeams/LeagueOfLegends"));
-
-            for (var i = 0; i <= teams.Count / 6; i++)
-            {
+            <div class="container">
                 <div class="row">
-                    <div class="col-auto mx-auto">
-                        <ul class="list-group list-group-horizontal">
-                            @{
-                                for (var o = 0; o < 6; o++)
-                                {
-                                    var index = o + i * 6;
-                                    if (index < teams.Count)
-                                    {
-                                        <li class="list-group-item border-0">
-                                            @{
-                                                var team = teams[index];
-                                                var captain = team?.Members?.FirstOrDefault(k => k.IsCaptain)?.ProfileIconId ?? 0;
-                                                var image = $"http://ddragon.leagueoflegends.com/cdn/9.20.1/img/profileicon/{captain}.png";
-                                                var rankUrl = $"https://opgg-static.akamaized.net/images/medals/{team.AverageRank.ToLower()}.png";
+                    @{
+                        foreach (var team in teams)
+                        {
+                            <div class="col">
+                                @{
+                                    var captain = team?.Members?.FirstOrDefault(k => k.IsCaptain)?.ProfileIconId ?? 0;
+                                    var image = $"http://ddragon.leagueoflegends.com/cdn/9.20.1/img/profileicon/{captain}.png";
+                                    var rankUrl = $"https://opgg-static.akamaized.net/images/medals/{team.AverageRank.ToLower()}.png";
 
-                                                <a href="/LoL/@team.Id">
-                                                    <img class="player-image" src="@image" alt="@team.Name"/>
-                                                </a>
-                                                <p>@team.Name</p>
-                                                <p>Team Rank: <img class="player-rank" src="@rankUrl" alt="@team.AverageRank"/></p>
-                                            }
-                                        </li>
-                                    }
+                                    <a href="/LoL/@team.Id">
+                                        <img class="player-image" src="@image" alt="@team.Name"/>
+                                    </a>
+                                    <p>@team.Name</p>
+                                    <p>Team Rank: <img class="player-rank" src="@rankUrl" alt="@team.AverageRank"/></p>
                                 }
-                            }
-                        </ul>
-                    </div>
+                            </div>
+                        }
+                    }
                 </div>
-            }
+            </div>
         }
     }
 </div>

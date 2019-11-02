@@ -12,42 +12,31 @@
         using (var web = new WebClient())
         {
             var teams = JsonConvert.DeserializeObject<List<RainbowSixTeam>>(web.DownloadString("https://api.pustalorc.xyz/NuelTeams/RainbowSix"));
-
-            for (var i = 0; i <= teams.Count / 6; i++)
-            {
+            <div class="container">
                 <div class="row">
-                    <div class="col-auto mx-auto">
-                        <ul class="list-group list-group-horizontal">
-                            @{
-                                for (var o = 0; o < 6; o++)
-                                {
-                                    var index = o + i * 6;
-                                    if (index < teams.Count)
+                    @{
+                        foreach (var team in teams)
+                        {
+                            <div class="col">
+                                @{
+                                    var captain = team?.Members?.FirstOrDefault(k => k.IsCaptain)?.PlayerId ?? "";
+                                    var image = $"https://ubisoft-avatars.akamaized.net/{team.Members.Find(k => k.IsCaptain).PlayerId}/default_146_146.png";
+                                    if (string.IsNullOrEmpty(captain))
                                     {
-                                        <li class="list-group-item border-0">
-                                            @{
-                                                var team = teams[index];
-                                                var captain = team?.Members?.FirstOrDefault(k => k.IsCaptain)?.PlayerId ?? "";
-                                                var image = $"https://ubisoft-avatars.akamaized.net/{team.Members.Find(k => k.IsCaptain).PlayerId}/default_146_146.png";
-                                                if (string.IsNullOrEmpty(captain))
-                                                {
-                                                    image = "https://ubisoft-avatars.akamaized.net/73fb3e4e-bb01-4c51-8160-73c6a421c51f/default_146_146.png";
-                                                }
-
-                                                <a href="/R6/@team.Id">
-                                                    <img src="@image" alt="@team.Name"/>
-                                                </a>
-                                                <p>@team.Name</p>
-                                                <p>Team MMR: @team.AverageMmr</p>
-                                            }
-                                        </li>
+                                        image = "https://ubisoft-avatars.akamaized.net/73fb3e4e-bb01-4c51-8160-73c6a421c51f/default_146_146.png";
                                     }
+
+                                    <a href="/R6/@team.Id">
+                                        <img src="@image" alt="@team.Name"/>
+                                    </a>
+                                    <p>@team.Name</p>
+                                    <p>Team MMR: @team.AverageMmr</p>
                                 }
-                            }
-                        </ul>
-                    </div>
+                            </div>
+                        }
+                    }
                 </div>
-            }
+            </div>
         }
     }
 </div>

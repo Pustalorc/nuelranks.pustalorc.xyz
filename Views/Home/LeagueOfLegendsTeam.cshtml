@@ -17,44 +17,34 @@
 
         <h2>Team: <a href="https://thenuel.com/team/@ViewBag.TeamData.Id?gameContext=1">@team.Name</a></h2>
         <br/>
-        for (var i = 0; i <= team.Members.Count / 6; i++)
-        {
+        <div class="container">
             <div class="row">
-                <div class="col-auto mx-auto">
-                    <ul class="list-group list-group-horizontal">
-                        @{
-                            for (var o = 0; o < 6; o++)
-                            {
-                                var index = o + i * 6;
-                                if (index < team.Members.Count)
-                                {
-                                    var player = team.Members[index];
-                                    if (string.IsNullOrEmpty(player.PlayerId))
-                                    {
-                                        <li class="list-group-item list-group-item-warning border-0">
-                                            <p>@player.Name</p>
-                                            <p>Account doesn't exist, please verify your name.</p>
-                                        </li>
-                                    }
-                                    else
-                                    {
-                                        var rankUrl = $"https://opgg-static.akamaized.net/images/medals/{player.Rank.ToLower()}.png";
-                                        var profilePic = $"http://ddragon.leagueoflegends.com/cdn/9.20.1/img/profileicon/{player.ProfileIconId}.png";
-
-                                        <li class="list-group-item border-0">
-                                            <a href="https://euw.op.gg/summoner/userName=@player.Name">
-                                                <img class="player-image" src="@profilePic" alt="@profilePic"/>
-                                            </a>
-                                            <p>@player.Name</p>
-                                            <img class="player-rank" src="@rankUrl" alt="@player.Rank"/>
-                                        </li>
-                                    }
-                                }
-                            }
+                @{
+                    foreach (var player in team.Members)
+                    {
+                        if (string.IsNullOrEmpty(player.PlayerId))
+                        {
+                            <div class="col border border-danger text-danger">
+                                <p>@player.Name</p>
+                                <p>Account doesn't exist, please verify your name.</p>
+                            </div>
                         }
-                    </ul>
-                </div>
+                        else
+                        {
+                            var rankUrl = $"https://opgg-static.akamaized.net/images/medals/{player.Rank.ToLower()}.png";
+                            var profilePic = $"http://ddragon.leagueoflegends.com/cdn/9.20.1/img/profileicon/{player.ProfileIconId}.png";
+
+                            <div class="col">
+                                <a href="https://euw.op.gg/summoner/userName=@player.Name">
+                                    <img class="player-image" src="@profilePic" alt="@profilePic" />
+                                </a>
+                                <p>@player.Name</p>
+                                <img class="player-rank" src="@rankUrl" alt="@player.Rank" />
+                            </div>
+                        }
+                    }
+                }
             </div>
-        }
+        </div>
     }
 </div>

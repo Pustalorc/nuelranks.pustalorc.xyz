@@ -14,47 +14,37 @@
     <br/>
     @{
         RainbowSixTeam team = ViewBag.TeamData;
-
+        
         <h2>Team: <a href="https://thenuel.com/team/@ViewBag.TeamData.Id?gameContext=5734">@team.Name</a> - Average MMR: @team.AverageMmr</h2>
         <br/>
-        for (var i = 0; i <= team.Members.Count / 6; i++)
-        {
+        <div class="container">
             <div class="row">
-                <div class="col-auto mx-auto">
-                    <ul class="list-group list-group-horizontal">
-                        @{
-                            for (var o = 0; o < 6; o++)
-                            {
-                                var index = o + i * 6;
-                                if (index < team.Members.Count)
-                                {
-                                    var player = team.Members[index];
-                                    if (string.IsNullOrEmpty(player.PlayerId))
-                                    {
-                                        <li class="list-group-item list-group-item-warning border-0">
-                                            <p>@player.Name</p>
-                                            <p>Account doesn't exist, please verify your name.</p>
-                                        </li>
-                                    }
-                                    else
-                                    {
-                                        var rankUrl = $"https://trackercdn.com/cdn/r6.tracker.network/ranks/svg/hd-rank{player.Rank}.svg";
-
-                                        <li class="list-group-item border-0">
-                                            <a href="https://r6.tracker.network/profile/pc/@player.Name">
-                                                <img src="https://ubisoft-avatars.akamaized.net/@player.PlayerId/default_146_146.png" alt="https://ubisoft-avatars.akamaized.net/@player.PlayerId/default_146_146.png"/>
-                                            </a>
-                                            <p>@player.Name</p>
-                                            <img class="player-rank" src="@rankUrl" alt="@player.Rank"/>
-                                            <p>MMR: @player.Mmr</p>
-                                        </li>
-                                    }
-                                }
-                            }
+                @{
+                    foreach (var player in team.Members)
+                    {
+                        if (string.IsNullOrEmpty(player.PlayerId))
+                        {
+                            <div class="col border border-danger text-danger">
+                                <p>@player.Name</p>
+                                <p>Account doesn't exist, please verify your name.</p>
+                            </div>
                         }
-                    </ul>
-                </div>
+                        else
+                        {
+                            var rankUrl = $"https://trackercdn.com/cdn/r6.tracker.network/ranks/svg/hd-rank{player.Rank}.svg";
+
+                            <div class="col">
+                                <a href="https://r6.tracker.network/profile/pc/@player.Name">
+                                    <img src="https://ubisoft-avatars.akamaized.net/@player.PlayerId/default_146_146.png" alt="https://ubisoft-avatars.akamaized.net/@player.PlayerId/default_146_146.png" />
+                                </a>
+                                <p>@player.Name</p>
+                                <img class="player-rank" src="@rankUrl" alt="@player.Rank" />
+                                <p>MMR: @player.Mmr</p>
+                            </div>
+                        }
+                    }
+                }
             </div>
-        }
+        </div>
     }
 </div>
