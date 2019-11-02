@@ -1,6 +1,12 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using nuelranks.pustalorc.xyz.JSON_Classes;
 using nuelranks.pustalorc.xyz.Models;
 
 namespace nuelranks.pustalorc.xyz.Controllers
@@ -19,30 +25,33 @@ namespace nuelranks.pustalorc.xyz.Controllers
             return View();
         }
 
-        [Route("LoL/")]
-        public IActionResult LeagueOfLegends()
+        [Route("{tournament}/")]
+        public IActionResult Tournament(string tournament)
         {
-            return View();
+            using (var web = new WebClient())
+            {
+                var tournaments =
+                    JsonConvert.DeserializeObject<List<Tournament>>(
+                        web.DownloadString("https://api.pustalorc.xyz/NuelTeams"));
+                ViewBag.Tournament = tournaments.FirstOrDefault(k =>
+                    k.TournamentName.Equals(tournament, StringComparison.InvariantCultureIgnoreCase));
+                return View();
+            }
         }
 
-        [HttpGet("LoL/{team}")]
-        public IActionResult LeagueOfLegendsTeam(string team)
+        [HttpGet("{tournament}/{team}")]
+        public IActionResult TournamentTeam(string tournament, string team)
         {
-            ViewBag.Message = team;
-            return View();
-        }
-
-        [Route("R6/")]
-        public IActionResult RainbowSix()
-        {
-            return View();
-        }
-
-        [HttpGet("R6/{team}")]
-        public IActionResult RainbowSixTeam(string team)
-        {
-            ViewBag.Message = team;
-            return View();
+            using (var web = new WebClient())
+            {
+                var tournaments =
+                    JsonConvert.DeserializeObject<List<Tournament>>(
+                        web.DownloadString("https://api.pustalorc.xyz/NuelTeams"));
+                ViewBag.Tournament = tournaments.FirstOrDefault(k =>
+                    k.TournamentName.Equals(tournament, StringComparison.InvariantCultureIgnoreCase));
+                ViewBag.TeamID = team;
+                return View();
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

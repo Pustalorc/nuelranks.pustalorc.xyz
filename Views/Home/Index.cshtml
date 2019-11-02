@@ -1,22 +1,47 @@
-﻿@{
+﻿@using System.Net
+@using Newtonsoft.Json
+@using nuelranks.pustalorc.xyz.JSON_Classes
+@{
     ViewData["Title"] = "The Nuel Tournament Ranks";
 }
 
 <div class="text-center">
     <h1 class="display-4"><a href="https://thenuel.com/">The Nuel</a> Tournament Ranks</h1>
     <br/>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <a href="/LoL">
-                    <img class="img-fluid" alt="LoL_Nuel_logo.png" src="https://images.ctfassets.net/4omerct2czpp/4033dcsLqHaa4z2k6YRmkV/83070b991ccb1dba8a50631d7483e2cb/LEAGUE_LOGO2.png" />
-                </a>
+    @{
+        using (var web = new WebClient())
+        {
+            var tournaments = JsonConvert.DeserializeObject<List<Tournament>>(web.DownloadString("https://api.pustalorc.xyz/NuelTeams"));
+            <div class="container">
+                <div class="row">
+                    @{
+                        foreach (var tournament in tournaments)
+                        {
+                            switch (tournament.TournamentType)
+                            {
+                                case ETournamentType.League:
+                                    <div class="col">
+                                        <a href="/@tournament.TournamentName">
+                                            <img class="img-fluid" alt="LoL_Nuel_logo.png" src="https://images.ctfassets.net/4omerct2czpp/4033dcsLqHaa4z2k6YRmkV/83070b991ccb1dba8a50631d7483e2cb/LEAGUE_LOGO2.png"/>
+                                            <p></p>
+                                            <p class="text-white">@tournament.FriendlyName</p>
+                                        </a>
+                                    </div>
+                                    break;
+                                case ETournamentType.Rainbow6:
+                                    <div class="col">
+                                        <a href="/@tournament.TournamentName">
+                                            <img class="img-fluid" alt="R6_Nuel_logo.png" src="https://images.ctfassets.net/4omerct2czpp/AO5w97ZbdtxsBjaSvcNSm/01d0824bbfd382bac58612bee5656553/R6_logo.png"/>
+                                            <p></p>
+                                            <p class="text-white">@tournament.FriendlyName</p>
+                                        </a>
+                                    </div>
+                                    break;
+                            }
+                        }
+                    }
+                </div>
             </div>
-            <div class="col">
-                <a href="/R6">
-                    <img class="img-fluid" alt="R6_Nuel_logo.png" src="https://images.ctfassets.net/4omerct2czpp/AO5w97ZbdtxsBjaSvcNSm/01d0824bbfd382bac58612bee5656553/R6_logo.png" />
-                </a>
-            </div>
-        </div>
-    </div>
+        }
+    }
 </div>
