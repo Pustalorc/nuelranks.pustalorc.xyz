@@ -17,7 +17,7 @@ namespace nuelranks.pustalorc.xyz
                 .ConfigureWebHostDefaults(webBuilder => webBuilder.ConfigureKestrel(options =>
                     {
                         options.Limits.MinRequestBodyDataRate = null;
-                        options.ListenAnyIP(50051,
+                        options.ListenLocalhost(50051,
                             listenOptions => listenOptions.Protocols = HttpProtocols.Http1AndHttp2);
                     })
                     .UseStartup<Startup>());
