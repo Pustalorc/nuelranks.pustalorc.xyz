@@ -16,6 +16,7 @@
 
             switch (tournament.TournamentType)
             {
+                case ETournamentType.TeamFightTactics:
                 case ETournamentType.League:
                     var leagueTeams = JsonConvert.DeserializeObject<List<LeagueOfLegendsTeam>>(teams);
                     <div class="container">

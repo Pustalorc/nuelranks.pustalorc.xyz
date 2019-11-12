@@ -10,6 +10,7 @@
 
         switch (tournament.TournamentType)
         {
+            case ETournamentType.TeamFightTactics:
             case ETournamentType.League:
                 ViewBag.TeamData = JsonConvert.DeserializeObject<LeagueOfLegendsTeam>(teamData);
                 break;
@@ -28,6 +29,7 @@
     @{
         switch (tournament.TournamentType)
         {
+            case ETournamentType.TeamFightTactics:
             case ETournamentType.League:
                 LeagueOfLegendsTeam leagueTeam = ViewBag.TeamData;
 
