@@ -8,7 +8,7 @@
 
 <div class="text-center">
     <h1 class="display-4"><a href="https://tournaments.thenuel.com/tournaments/@tournament.TournamentName">The Nuel @tournament.FriendlyName</a> Ranks</h1>
-    <br />
+    <br/>
     @{
         using (var web = new WebClient())
         {
@@ -21,22 +21,22 @@
                     <div class="container">
                         <div class="row">
                             @{
-                                foreach (var team in leagueTeams.Where(k => k.Tournament.TournamentName.Equals(tournament.TournamentName, StringComparison.InvariantCultureIgnoreCase)))
-                                {
-                                    <div class="col">
-                                        @{
-                                            var captain = team?.Players?.FirstOrDefault(k => k.IsCaptain)?.ProfileIconId ?? 0;
-                                            var image = $"http://ddragon.leagueoflegends.com/cdn/9.20.1/img/profileicon/{captain}.png";
-                                            var rankUrl = $"https://opgg-static.akamaized.net/images/medals/{team.AverageRank.ToLower()}.png";
+                    foreach (var team in leagueTeams.Where(k => k.Tournament.TournamentName.Equals(tournament.TournamentName, StringComparison.InvariantCultureIgnoreCase)))
+                    {
+                        <div class="col">
+                            @{
+                                var captain = team?.Players?.FirstOrDefault(k => k.IsCaptain)?.ProfileIconId ?? 0;
+                                var image = $"http://ddragon.leagueoflegends.com/cdn/9.20.1/img/profileicon/{captain}.png";
+                                var rankUrl = $"https://opgg-static.akamaized.net/images/medals/{team.AverageRank.ToLower()}.png";
 
-                                            <a href="/@tournament.TournamentName/@team.Id">
-                                                <img class="player-image" src="@image" alt="@team.Name" />
-                                            </a>
-                                            <p>@team.Name</p>
-                                            <p>Team Rank: <img class="player-rank" src="@rankUrl" alt="@team.AverageRank" /></p>
-                                        }
-                                    </div>
-                                }
+                                <a href="/@tournament.TournamentName/@team.Id">
+                                    <img class="player-image" src="@image" alt="@team.Name"/>
+                                </a>
+                                <p>@team.Name</p>
+                                <p>Team Rank: <img class="player-rank" src="@rankUrl" alt="@team.AverageRank"/></p>
+                            }
+                        </div>
+                    }
                             }
                         </div>
                     </div>
@@ -46,25 +46,25 @@
                     <div class="container">
                         <div class="row">
                             @{
-                                foreach (var team in rainbowTeams.Where(k => k.Tournament.TournamentName.Equals(tournament.TournamentName, StringComparison.InvariantCultureIgnoreCase)))
+                    foreach (var team in rainbowTeams.Where(k => k.Tournament.TournamentName.Equals(tournament.TournamentName, StringComparison.InvariantCultureIgnoreCase)))
+                    {
+                        <div class="col">
+                            @{
+                                var captain = team?.Players?.FirstOrDefault(k => k.IsCaptain)?.PlayerId ?? "";
+                                var image = $"https://ubisoft-avatars.akamaized.net/{captain}/default_146_146.png";
+                                if (string.IsNullOrEmpty(captain))
                                 {
-                                    <div class="col">
-                                        @{
-                                            var captain = team?.Players?.FirstOrDefault(k => k.IsCaptain)?.PlayerId ?? "";
-                                            var image = $"https://ubisoft-avatars.akamaized.net/{captain}/default_146_146.png";
-                                            if (string.IsNullOrEmpty(captain))
-                                            {
-                                                image = "https://ubisoft-avatars.akamaized.net/73fb3e4e-bb01-4c51-8160-73c6a421c51f/default_146_146.png";
-                                            }
-
-                                            <a href="/@tournament.TournamentName/@team.Id">
-                                                <img src="@image" alt="@team.Name" />
-                                            </a>
-                                            <p>@team.Name</p>
-                                            <p>Team MMR: @team.AverageMmr</p>
-                                        }
-                                    </div>
+                                    image = "https://ubisoft-avatars.akamaized.net/73fb3e4e-bb01-4c51-8160-73c6a421c51f/default_146_146.png";
                                 }
+
+                                <a href="/@tournament.TournamentName/@team.Id">
+                                    <img src="@image" alt="@team.Name"/>
+                                </a>
+                                <p>@team.Name</p>
+                                <p>Team MMR: @team.AverageMmr</p>
+                            }
+                        </div>
+                    }
                             }
                         </div>
                     </div>
