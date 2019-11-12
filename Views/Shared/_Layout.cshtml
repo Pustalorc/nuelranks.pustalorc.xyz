@@ -23,7 +23,7 @@
             @{
                 using (var web = new WebClient())
                 {
-                    var tournaments = JsonConvert.DeserializeObject<List<Tournament>>(web.DownloadString("https://api.pustalorc.xyz/NuelTeams"));
+                    var tournaments = JsonConvert.DeserializeObject<List<Tournament>>(web.DownloadString("https://api.pustalorc.xyz/NuelTournaments"));
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                         <ul class="navbar-nav flex-grow-1">
                             @{

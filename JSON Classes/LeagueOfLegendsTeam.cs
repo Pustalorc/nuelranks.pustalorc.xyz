@@ -1,13 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace nuelranks.pustalorc.xyz.JSON_Classes
 {
-    public class LeagueOfLegendsTeam
+    public abstract class TournamentTeam
     {
-        public string TournamentName { get; set; } = "";
+        public Tournament Tournament { get; set; } = null;
         public string Id { get; set; } = "";
         public string Name { get; set; } = "";
+
+        [JsonIgnore]
+        public List<TeamPlayer> Members { get; set; } = new List<TeamPlayer>();
+    }
+    public class LeagueOfLegendsTeam : TournamentTeam
+    {
         public string AverageRank { get; set; } = "";
-        public List<LeagueOfLegendsPlayer> Members { get; set; } = new List<LeagueOfLegendsPlayer>();
+        public List<LeagueOfLegendsPlayer> Players { get; set; }
     }
 }

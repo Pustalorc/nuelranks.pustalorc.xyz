@@ -2,12 +2,10 @@
 
 namespace nuelranks.pustalorc.xyz.JSON_Classes
 {
-    public class RainbowSixTeam
+    public class RainbowSixTeam : TournamentTeam
     {
-        public string TournamentName { get; set; } = "";
-        public string Id { get; set; } = "";
-        public string Name { get; set; } = "";
         public int AverageMmr { get; set; } = 0;
-        public List<RainbowSixPlayer> Members { get; set; } = new List<RainbowSixPlayer>();
+
+        public List<RainbowSixPlayer> Players { get; set; }
     }
 }

@@ -6,13 +6,15 @@
 
     using (var web = new WebClient())
     {
+        var teamData = web.DownloadString($"https://api.pustalorc.xyz/NuelTournaments/{tournament.TournamentName}/{ViewBag.TeamID}");
+
         switch (tournament.TournamentType)
         {
             case ETournamentType.League:
-                ViewBag.TeamData = JsonConvert.DeserializeObject<LeagueOfLegendsTeam>(web.DownloadString($"https://api.pustalorc.xyz/NuelTeams/LeagueOfLegends/{ViewBag.TeamID}"));
+                ViewBag.TeamData = JsonConvert.DeserializeObject<LeagueOfLegendsTeam>(teamData);
                 break;
             case ETournamentType.Rainbow6:
-                ViewBag.TeamData = JsonConvert.DeserializeObject<RainbowSixTeam>(web.DownloadString($"https://api.pustalorc.xyz/NuelTeams/RainbowSix/{ViewBag.TeamID}"));
+                ViewBag.TeamData = JsonConvert.DeserializeObject<RainbowSixTeam>(teamData);
                 break;
         }
 
@@ -21,17 +23,7 @@
 }
 
 <div class="text-center">
-    @{
-        switch (tournament.TournamentType)
-        {
-            case ETournamentType.League:
-                <h1 class="display-4"><a href="https://tournaments.thenuel.com/tournaments/league-of-legends-university-series-south-winter-2019">The Nuel @tournament.FriendlyName</a> Ranks</h1>
-                break;
-            case ETournamentType.Rainbow6:
-                <h1 class="display-4"><a href="https://tournaments.thenuel.com/tournaments/rainbow-six-siege-university-league-winter-2019">The Nuel @tournament.FriendlyName</a> Ranks</h1>
-                break;
-        }
-    }
+    <h1 class="display-4"><a href="https://tournaments.thenuel.com/tournaments/@tournament.TournamentName">The Nuel @tournament.FriendlyName</a> Ranks</h1>
     <br/>
     @{
         switch (tournament.TournamentType)
@@ -44,7 +36,7 @@
                 <div class="container">
                     <div class="row">
                         @{
-                foreach (var player in leagueTeam.Members)
+                foreach (var player in leagueTeam.Players)
                 {
                     if (string.IsNullOrEmpty(player.PlayerId))
                     {
@@ -79,7 +71,7 @@
                 <div class="container">
                     <div class="row">
                         @{
-                foreach (var player in rainbowTeam.Members)
+                foreach (var player in rainbowTeam.Players)
                 {
                     if (string.IsNullOrEmpty(player.PlayerId))
                     {

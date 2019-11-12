@@ -32,7 +32,7 @@ namespace nuelranks.pustalorc.xyz.Controllers
             {
                 var tournaments =
                     JsonConvert.DeserializeObject<List<Tournament>>(
-                        web.DownloadString("https://api.pustalorc.xyz/NuelTeams"));
+                        web.DownloadString("https://api.pustalorc.xyz/NuelTournaments"));
                 ViewBag.Tournament = tournaments.FirstOrDefault(k =>
                     k.TournamentName.Equals(tournament, StringComparison.InvariantCultureIgnoreCase));
                 return View();
@@ -46,7 +46,7 @@ namespace nuelranks.pustalorc.xyz.Controllers
             {
                 var tournaments =
                     JsonConvert.DeserializeObject<List<Tournament>>(
-                        web.DownloadString("https://api.pustalorc.xyz/NuelTeams"));
+                        web.DownloadString("https://api.pustalorc.xyz/NuelTournaments"));
                 ViewBag.Tournament = tournaments.FirstOrDefault(k =>
                     k.TournamentName.Equals(tournament, StringComparison.InvariantCultureIgnoreCase));
                 ViewBag.TeamID = team;
