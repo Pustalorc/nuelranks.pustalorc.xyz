@@ -49,6 +49,7 @@
                     }
                     else
                     {
+                        var rankText = player.Rank.Replace('_', ' ');
                         var rankUrl = $"https://opgg-static.akamaized.net/images/medals/{player.Rank.ToLower()}.png";
                         var profilePic = $"http://ddragon.leagueoflegends.com/cdn/9.20.1/img/profileicon/{player.ProfileIconId}.png";
 
@@ -57,7 +58,7 @@
                                 <img class="player-image" src="@profilePic" alt="@profilePic"/>
                             </a>
                             <p>@player.Name</p>
-                            <img class="player-rank" src="@rankUrl" alt="@player.Rank"/>
+                            <p><img class="player-rank" src="@rankUrl" alt="@rankText"/>@rankText</p>
                         </div>
                     }
                 }

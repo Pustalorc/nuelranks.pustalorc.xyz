@@ -29,12 +29,13 @@
                                 var captain = team?.Players?.FirstOrDefault(k => k.IsCaptain)?.ProfileIconId ?? 0;
                                 var image = $"http://ddragon.leagueoflegends.com/cdn/9.20.1/img/profileicon/{captain}.png";
                                 var rankUrl = $"https://opgg-static.akamaized.net/images/medals/{team.AverageRank.ToLower()}.png";
+                                var rankText = team.AverageRank.Replace('_', ' ');
 
                                 <a href="/@tournament.TournamentName/@team.Id">
                                     <img class="player-image" src="@image" alt="@team.Name"/>
                                 </a>
                                 <p>@team.Name</p>
-                                <p>Team Rank: <img class="player-rank" src="@rankUrl" alt="@team.AverageRank"/></p>
+                                <p>Team Rank: <img class="player-rank" src="@rankUrl" alt="@rankText"/>@rankText</p>
                             }
                         </div>
                     }
