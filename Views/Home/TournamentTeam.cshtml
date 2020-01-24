@@ -84,7 +84,7 @@
                     }
                     else
                     {
-                        var rankUrl = $"https://trackercdn.com/cdn/r6.tracker.network/ranks/svg/hd-rank{player.Rank}.svg";
+                        var rankUrl = player.Rank == 21 ? "http://trackercdn.com/cdn/r6.tracker.network/ranks/svg/s15/hd-rank23.svg" : $"https://trackercdn.com/cdn/r6.tracker.network/ranks/svg/hd-rank{player.Rank}.svg";
 
                         <div class="col">
                             <a href="https://r6.tracker.network/profile/pc/@player.Name">
